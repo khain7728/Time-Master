@@ -486,71 +486,69 @@ function toggleAdd() {
     addPanel.classList.toggle('show'); // Thêm hoặc bỏ lớp 'show'
 }
 
-document.getElementById('missionInput').addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        const missionTitle = event.target.value.trim(); // Lấy tiêu đề nhiệm vụ
-        const missionTime = document.getElementById('misstionTime').value.trim(); // Lấy thời gian
-        const missionTag = document.getElementById('misstionTag').value.trim(); // Lấy tag
-        const missionReminder = document.getElementById('misstionReminder').value.trim(); // Lấy nhắc nhở
-        const missionLocation = document.getElementById('misstionLocation').value.trim(); // Lấy địa điểm
-        const missionNote = document.getElementById('wrNote').value.trim() || ''; // Lấy ghi chú (nếu trống thì để là chuỗi rỗng)
+// Gắn sự kiện cho tất cả các phần tử cần thiết
+document.querySelectorAll('#missionInput, #wrNote').forEach(input => {
+    input.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            const missionTitle = document.getElementById('missionInput').value.trim(); // Lấy tiêu đề nhiệm vụ
+            const missionTime = document.getElementById('misstionTime').value.trim(); // Lấy thời gian
+            const missionTag = document.getElementById('misstionTag').value.trim(); // Lấy tag
+            const missionReminder = document.getElementById('misstionReminder').value.trim(); // Lấy nhắc nhở
+            const missionLocation = document.getElementById('misstionLocation').value.trim(); // Lấy địa điểm
+            const missionNote = document.getElementById('wrNote').value.trim() || ''; // Lấy ghi chú (nếu trống thì để là chuỗi rỗng)
 
-        if (missionTitle && missionTime && missionTag && missionReminder && missionLocation) {
-            // Kiểm tra nếu đã có ngày được chọn
-            const selectedDay = selectedDayElement ? selectedDayElement.textContent : null;
-            const selectedMonth = currentMonth + 1; // Lấy tháng hiện tại (1-12)
-            const selectedYear = currentYear; // Lấy năm hiện tại
+            if (missionTitle && missionTime && missionTag && missionReminder && missionLocation) {
+                // Kiểm tra nếu đã có ngày được chọn
+                const selectedDay = selectedDayElement ? selectedDayElement.textContent : null;
+                const selectedMonth = currentMonth + 1; // Lấy tháng hiện tại (1-12)
+                const selectedYear = currentYear; // Lấy năm hiện tại
 
-            let dateKey;
+                let dateKey;
 
-            if (selectedDay) {
-                // Nếu ngày đã được chọn, sử dụng ngày đó
-                dateKey = `${selectedDay.padStart(2, '0')}-${selectedMonth.toString().padStart(2, '0')}-${selectedYear}`;
+                if (selectedDay) {
+                    dateKey = `${selectedDay.padStart(2, '0')}-${selectedMonth.toString().padStart(2, '0')}-${selectedYear}`;
+                } else {
+                    const today = new Date();
+                    const todayDay = today.getDate().toString().padStart(2, '0');
+                    const todayMonth = (today.getMonth() + 1).toString().padStart(2, '0');
+                    const todayYear = today.getFullYear();
+                    dateKey = `${todayDay}-${todayMonth}-${todayYear}`;
+                }
+
+                const newMission = {
+                    title: missionTitle,
+                    time: missionTime,
+                    tag: missionTag,
+                    reminder: missionReminder,
+                    location: missionLocation,
+                    note: missionNote, // Thêm ghi chú (có thể là chuỗi rỗng)
+                    status: "Đang làm" // Thiết lập trạng thái mặc định
+                };
+
+                if (!defaultTasks[dateKey]) {
+                    defaultTasks[dateKey] = [];
+                }
+                defaultTasks[dateKey].push(newMission);
+
+                displayTasks(dateKey);
+
+                // Xóa nội dung input sau khi thêm
+                document.getElementById('missionInput').value = '';
+                document.getElementById('misstionTime').value = '';
+                document.querySelector('input[type="text"]').value = '';
+                document.getElementById('misstionReminder').value = '';
+                document.getElementById('misstionLocation').value = '';
+                document.getElementById('wrNote').value = ''; // Xóa ghi chú
+
+                toggleAdd();
             } else {
-                // Nếu không có ngày chọn, sử dụng ngày hiện tại
-                const today = new Date();
-                const todayDay = today.getDate().toString().padStart(2, '0');
-                const todayMonth = (today.getMonth() + 1).toString().padStart(2, '0');
-                const todayYear = today.getFullYear();
-                dateKey = `${todayDay}-${todayMonth}-${todayYear}`;
+                alert('Vui lòng điền đầy đủ thông tin.');
             }
-
-            // Tạo đối tượng nhiệm vụ với tất cả các giá trị
-            const newMission = {
-                title: missionTitle,
-                time: missionTime,
-                tag: missionTag,
-                reminder: missionReminder,
-                location: missionLocation,
-                note: missionNote, // Thêm ghi chú (có thể là chuỗi rỗng)
-                status: "Đang làm" // Thiết lập trạng thái mặc định
-            };
-
-            // Nếu ngày đã tồn tại, thêm vào mảng nhiệm vụ của ngày đó, ngược lại tạo mảng mới
-            if (!defaultTasks[dateKey]) {
-                defaultTasks[dateKey] = [];
-            }
-            defaultTasks[dateKey].push(newMission);
-
-            // Gọi lại displayTasks để hiển thị nhiệm vụ mới
-            displayTasks(dateKey);
-
-            // Xóa nội dung input sau khi thêm
-            event.target.value = ''; 
-            document.getElementById('misstionTime').value = ''; 
-            document.querySelector('input[type="text"]').value = ''; 
-            document.getElementById('misstionReminder').value = ''; 
-            document.getElementById('misstionLocation').value = ''; 
-            document.getElementById('wrNote').value = ''; // Xóa ghi chú
-
-            // Đóng add-panel
-            toggleAdd();
-        } else {
-            alert('Vui lòng điền đầy đủ thông tin.');
+            checkOverdueTasks();
         }
-        checkOverdueTasks();
-    }
+    });
 });
+
 
 
 
