@@ -420,9 +420,9 @@ function toggleMenu() {
     const calendar = document.querySelector('.calendar');
     const daysOfWeek = document.querySelector('.calendar-days-of-week');
     const daysOfMonth = document.querySelector('.new-class-calendar');
-    const mission = document.querySelector('.mission');
+    const mission = document.querySelector('.task-container');
     const progress = document.querySelector('.progress'); // Tìm phần tử với class 'progress'
-
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
     // Nếu có phần tử với class 'progress', mở menu mặc định
     if (progress) {
         if (menuPanel) menuPanel.classList.add('active');
@@ -444,9 +444,17 @@ function toggleMenu() {
             console.error('Calendar element not found!');
         }
         if (daysOfWeek) daysOfWeek.style.width = 'calc(100% - 25%)';
-        if (mission) {
-            mission.style.width = 'calc(100% - 25%)';
-            mission.style.marginLeft = '25%';
+        if (mediaQuery.matches){
+            if (mission) {
+                mission.style.width = 'calc(90%)';
+                mission.style.marginLeft = '40%';
+            }
+        }
+        else {
+            if (mission) {
+                mission.style.width = 'calc(100% - 30%)';
+                mission.style.marginLeft = '23%';
+            }
         }
         if (daysOfMonth) {
             daysOfMonth.style.width = 'calc(100% - 25%)';
