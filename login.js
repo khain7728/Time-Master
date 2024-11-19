@@ -1,7 +1,10 @@
 // Lấy các phần tử từ DOM
 const emailInput = document.querySelector('.email input[type="email"]');
 const passwordInput = document.querySelector('.password input[type="password"]');
-
+history.pushState(null, null, window.location.href);
+window.addEventListener('popstate', function () {
+    history.pushState(null, null, window.location.href);
+});
 // Xử lý sự kiện khi người dùng nhấn phím Enter
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
@@ -25,6 +28,7 @@ document.addEventListener('keydown', function(event) {
 
             // Chuyển hướng đến trang chủ
             window.location.href = 'homepage.html'; // Thay đổi 'home.html' thành tên file trang chủ của bạn
+            
         } else {
             alert('Email hoặc mật khẩu không đúng.');
         }

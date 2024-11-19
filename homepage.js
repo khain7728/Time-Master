@@ -439,17 +439,17 @@ function toggleMenu() {
     if (menuPanel && menuPanel.classList.contains('active')) {
         if (main) main.classList.add('menu-open');
         if (calendar) {
-            calendar.style.width = 'calc(100% - 350px)';
+            calendar.style.width = 'calc(100% - 25%)';
         } else {
             console.error('Calendar element not found!');
         }
-        if (daysOfWeek) daysOfWeek.style.width = 'calc(100% - 350px)';
+        if (daysOfWeek) daysOfWeek.style.width = 'calc(100% - 25%)';
         if (mission) {
-            mission.style.width = 'calc(100% - 450px)';
-            mission.style.marginLeft = '350px';
+            mission.style.width = 'calc(100% - 25%)';
+            mission.style.marginLeft = '25%';
         }
         if (daysOfMonth) {
-            daysOfMonth.style.width = 'calc(100% - 350px)';
+            daysOfMonth.style.width = 'calc(100% - 25%)';
         } else {
             console.error('daysOfMonth element not found!');
         }
