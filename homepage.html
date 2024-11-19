@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIME MASTER</title>
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="icon/fontawesome/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="hamburger" style="margin-left: 20px;" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        <div class="menu-panel">
+            <div class="menu">
+                <a class="menu link choice" href="homepage.html" class="menu-item">Lịch cá nhân</a>
+                <a class="menu link" href="Mission.html" class="menu-item">Nhiệm vụ, sự kiện</a>
+                <a class="menu link" href="progress.html" class="menu-item">Tiến trình</a>
+                <a class="menu link" href="remind.html" class="menu-item">Nhắc nhở</a>
+                <a class="menu link" href="logout.html" class="menu-item">Đăng xuất</a>
+                <i class="menu icon_add fa-solid fa-plus" onclick="toggleAdd()"></i>
+            </div>
+        </div>
+        <div class="add-panel">
+            <div class="add_container">
+                <div class="add_mission">
+                    <div class="addMis">
+                        <input type="text" id="missionInput" placeholder="Thêm nhiệm vụ, sự kiện.">
+                    </div>
+                    <div class="addMis">
+                        <span><i class="misIcon fa-regular fa-clock"></i> Thời gian:</span>
+                        <input type="time" id="misstionTime" placeholder="Thời gian">
+                    </div>
+                    <div class="addMis">
+                        <span><i class="misIcon fa-solid fa-tag"></i> Chọn tag:</span>
+                        <input type="text" id="misstionTag" placeholder="Chọn tag">
+                    </div>
+                    <div class="addMis">
+                        <span><i class="misIcon fa-regular fa-bell"></i> Nhắc nhở:</span>
+                        <input type="time" id="misstionReminder" placeholder="Nhắc nhở">
+                    </div>
+                    <div class="addMis">
+                        <span><i class="misIcon fa-solid fa-location-dot"></i> Địa điểm:</span>
+                        <input type="text" id="misstionLocation" placeholder="Địa điểm">
+                    </div>
+                </div>
+                <div class="Note">
+                    <div>
+                        <i class="noteIcon fa-regular fa-note-sticky"></i>
+                    </div>
+                    <input type="text" id="wrNote" placeholder="Ghi chú về nhiệm vụ, sự kiện">
+                </div>
+            </div>
+        </div>
+        <button id="prevMonth" class="nav-button"> &lt;</button>
+        <span id="monthYear"></span>
+        <button id="nextMonth" class="nav-button"> &gt;</button>
+        <div class="text">
+        <a href="homepage.html" class="item "><i class="choice_icon fa-solid fa-calendar"></i></a>
+        <a href="Mission.html" class="item"><i class="icon fa-solid fa-rectangle-list"></i></a>
+        <a href="progress.html" class="item"><i class="icon fa-solid fa-chart-line"></i></a>
+        <a href="remind.html" class="item "><i class="icon fa-solid fa-bell"></i></a>
+        <a href="logout.html" class="item"><i class="icon fa-solid fa-right-from-bracket"></i></a>
+        <a href="user.html" class="item"><i class="icon fa-regular fa-user"></i></a>
+        </div>
+    </div>
+
+    <div id="main">
+        <div class="main" >
+            <!-- Thẻ riêng cho dòng thứ (ngày trong tuần) -->
+            <div class="calendar-days-of-week" id="daysOfWeek"></div>
+            
+            <!-- Thẻ riêng cho các ngày trong tháng -->
+            <div class="calendar" id="calendar"></div>
+        </div>
+        <div class="mission">
+            <div id="taskContainer" class="task-container"></div>
+        </div>
+    </div>
+    <script src="homepage.js"></script>
+</body>
+</html>
+<div class="task-detail-panel" id="taskDetailPanel">
+    <div class="task-detail">
+        <div class="add_container">
+            <div class="add_mission">
+                <div class="addMis">
+                    <label>Tên nhiệm vụ:</label>
+                <input type="text" id="taskDetailTitleInput" onkeydown="handleKeydown(event)">
+                </div>
+
+                <div class="addMis">
+                <i class="misIcon fa-regular fa-clock"></i><label>Thời gian:</label>
+                <input type="time" id="taskDetailTimeInput" onkeydown="handleKeydown(event)">
+                </div>
+
+                <div class="addMis">
+                <i class="misIcon fa-solid fa-tag"></i><label>Tag:</label>
+                <input type="text" id="taskDetailTagInput" onkeydown="handleKeydown(event)">
+                </div>
+
+                <div class="addMis">
+                <i class="misIcon fa-regular fa-bell"></i><label>Nhắc nhở:</label>
+                <input type="time" id="taskDetailReminderInput" onkeydown="handleKeydown(event)">
+                </div>
+
+                <div class="addMis">
+                <i class="misIcon fa-solid fa-location-dot"></i><label>Địa điểm:</label>
+                <input type="text" id="taskDetailLocationInput" onkeydown="handleKeydown(event)">
+                </div>
+
+                <div class="addMis">
+                <i class="fa-solid fa-arrows-rotate"></i><label>Trạng thái:</label>
+                <input type="text" id="taskDetailStatusInput" onkeydown="handleKeydown(event)">
+                </div> </div>
+
+                
+                <div class="Note">
+                <div>
+                <i class="noteIcon fa-regular fa-note-sticky"></i>
+                </div>
+                <input type="text" id="taskDetailNoteInput" placeholder="Ghi chú về nhiệm vụ, sự kiện" onkeydown="handleKeydown(event)">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
