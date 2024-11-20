@@ -201,20 +201,20 @@ newCalendar(currentMonth, currentYear);
 // Danh sách nhiệm vụ mặc định được tạo bởi hệ thống\
 const defaultTasks = {
     "11-11-2024": [
-        { title: "Nhiệm vụ A", time: "10:00", tag: "Quan trọng", reminder: "09:00", location: "Phòng họp 1", status: "Đang chờ" },
+        { title: "Nhiệm vụ A", time: "10:00", tag: "Quan trọng", reminder: "09:00", location: "Phòng họp 1", status: "Đang làm" },
         { title: "Nhiệm vụ B", time: "14:00", tag: "không", reminder: "13:00", location: "Văn phòng", status: "Đang làm" }
     ],
     "30-11-2024": [
-        { title: "Xem xét báo cáo", time: "16:00", tag: "Quan trọng", reminder: "15:00", location: "Văn phòng", status: "Đang làm" },
-        { title: "Xem xét báo cáo", time: "16:00", tag: "Quan trọng", reminder: "15:00", location: "Văn phòng", status: "Đang làm" },
-        { title: "Xem xét báo cáo", time: "16:00", tag: "Quan trọng", reminder: "15:00", location: "Văn phòng", status: "Đang làm" },
-        { title: "Xem xét báo cáo", time: "16:00", tag: "Quan trọng", reminder: "15:00", location: "Văn phòng", status: "Hoàn thành" }
+        { title: "Học", time: "16:00", tag: "Quan trọng", reminder: "15:00", location: "Văn phòng", status: "Đang làm" },
+        { title: "Thực hành", time: "14:00", tag: "Quan trọng", reminder: "20:00", location: "Văn phòng", status: "Đang làm" },
+        { title: "Ăn", time: "18:00", tag: "Quan trọng", reminder: "20:00", location: "Văn phòng", status: "Đang làm" },
+        { title: "Ngủ", time: "19:00", tag: "Quan trọng", reminder: "20:00", location: "Văn phòng", status: "Hoàn thành" }
     ],
-    "15-11-2024": [
-        { title: "Xem xét báo cáo", time: "16:00", tag: "Quan trọng", reminder: "15:00", location: "Văn phòng", status: "Đang làm" },
-        { title: "Xem xét báo cáo", time: "16:00", tag: "Quan trọng", reminder: "15:00", location: "Văn phòng", status: "Đang làm" },
-        { title: "Xem xét báo cáo", time: "16:00", tag: "Quan trọng", reminder: "15:00", location: "Văn phòng", status: "Đang làm" },
-        { title: "Xem xét báo cáo", time: "16:00", tag: "Quan trọng", reminder: "08:27", location: "Văn phòng", status: "Đang làm" }
+    "20-11-2024": [
+        { title: "Ăn sáng", time: "07:00", tag: "Quan trọng", reminder: "06:55", location: "Trọ", status: "Đang làm" },
+        { title: "Lên trường", time: "9:00", tag: "Quan trọng", reminder: "08:55", location: "UTH", status: "Hoàn thành" },
+        { title: "Báo cáo tiểu luận", time: "11:00", tag: "Quan trọng", reminder: "11:00", location: "H002", status: "Đang làm" },
+        { title: "Ngủ", time: "13:00", tag: "Không Quan trọng", reminder: "12:55", location: "Trọ", status: "Đang làm" }
     ]
 };
 function checkOverdueTasks() {
